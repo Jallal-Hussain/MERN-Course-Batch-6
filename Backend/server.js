@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { login, register } from "./Controller/auth.controller.js";
 import authRoute from "./Routes/auth.routes.js";
 import usersRoutes from "./Routes/user.routes.js";
+import hotelsRoutes from "./Routes/hotel.routes.js";
 
 const app = express();
 
@@ -23,7 +24,10 @@ app.post("/api/auth/register", register);
 app.post("/api/auth/login", login); 
 
 // Users
-app.use("/api/users", usersRoutes); // Corrected middleware usage
+app.use("/api/users", usersRoutes);
+
+// Hotels
+app.use("/api/hotels", hotelsRoutes);
 
 const DatabaseConnection = async () => {
   try {
