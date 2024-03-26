@@ -6,18 +6,32 @@ import {
   getUsers,
 } from "../Controller/user.controller.js";
 
+import { verifyAdmin, verifyToken, verifyUser } from "../Utils/verifyToken.js";
+
 const router = express.Router();
 
-//UPDATE
-router.put("/:id", updateUser);
+router.get("/checkauthentication", verifyToken, (req, res, next) => {
+  res.send("Hello! You are authenticated.");
+});
 
-//DELETE
-router.delete("/:id", deleteUser);
+router.get("/checkuser/:id", verifyUser, (req, res, next) => {
+  res.send("Hello User! You are logged in.");
+});
 
-//GET
-router.get("/:id", getUser);
+router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
+  res.send("Hello Admin! You are logged in.");
+});
 
-//GET ALL
-router.get("/", getUsers);
+// UPDATE
+router.put("/:id", verifyAdmin, updateUser);
+
+// DELETE
+router.delete("/:id", verifyAdmin, deleteUser);
+
+// GET
+router.get("/:id", verifyUser, getUser);
+
+// GET ALL
+router.get("/", verifyUser, getUsers);
 
 export default router;
