@@ -3,26 +3,21 @@ import upload from "../Utils/multer.js";
 
 export const createHotel = async (req, res, next) => {
   try {
-    console.log("Passed check 1");
-    upload.single("photos")(req, res, async function (err) {
+    upload.array("photos", 5)(req, res, async function (err) {
       if (err) {
         console.error("Error uploading images:", err);
         return res.status(500).json({ error: "Error uploading images" });
       }
-      console.log("Passed check 2");
 
       try {
-        const photo = req.file.path;
-        console.log(photo);
+        const photos = req.files.map((file) => file.path);
+        console.log("Uploaded photos:", photos);
         console.log("Request Body : ", req.body);
-        console.log("Request File : ", photo);
-        console.log("Passed check 3");
 
         const newHotel = new Hotel({
           ...req.body,
-          photos: [photo],
+          photos: photos,
         });
-        console.log("Passed check 4");
 
         const savedHotel = await newHotel.save();
         res.status(200).json(savedHotel);
