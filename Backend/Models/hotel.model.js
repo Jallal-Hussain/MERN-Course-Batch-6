@@ -26,15 +26,14 @@ const HotelSchema = new mongoose.Schema({
     min: 0,
     max: 5,
   },
-  rooms: {
-    type: Array,
+  rooms: [Array],
+  
+  cheapestPrice: {
+    type: Number,
   },
-    cheapestPrice: {
-      type: Number,
-    },
-    featured: {
-      type: Boolean,
-    },
+  featured: {
+    type: Boolean,
+  },
 });
 
 export default mongoose.model("Hotel", HotelSchema);

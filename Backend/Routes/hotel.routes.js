@@ -23,6 +23,6 @@ router.delete("/:id", verifyAdmin, deleteHotel);
 router.get("/search/:id", verifyAdmin, getHotel);
 
 //GET ALL
-router.get("/hotels", verifyAdmin, getHotels);
+router.get("/hotels", getHotels);
 
 export default router;
