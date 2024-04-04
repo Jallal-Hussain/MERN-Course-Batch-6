@@ -16,11 +16,9 @@ dotenv.config();
 // Middlewares
 const corsOptions = {
   credentials: true,
-  origin: 'http://localhost:5173' // Whitelist the domains you want to allow
+  origin: 'http://localhost:5173'
 };
-
-app.use(cors(corsOptions)); // Use the cors middleware with your options
-
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());

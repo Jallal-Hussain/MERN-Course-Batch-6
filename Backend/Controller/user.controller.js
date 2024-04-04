@@ -19,7 +19,7 @@ export const updateUser = async (req, res, next) => {
 
     res.status(200).send({
       success: true,
-      message: "Username has been updated successfully.",
+      message: "Email has been updated successfully.",
       user: userData,
     });
   } catch (err) {

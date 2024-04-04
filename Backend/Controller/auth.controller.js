@@ -30,21 +30,21 @@ const register = async (req, res, next) => {
 //================================||
 const login = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !password) {
+    if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Username and password are required.",
+        message: "email and password are required.",
       });
     }
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "Username or password is incorrect.",
+        message: "email or password is incorrect.",
       });
     }
 
@@ -53,7 +53,7 @@ const login = async (req, res, next) => {
     if (!isPasswordCorrect) {
       return res.status(401).json({
         success: false,
-        message: "Username or password is incorrect.",
+        message: "email or password is incorrect.",
       });
     }
 
