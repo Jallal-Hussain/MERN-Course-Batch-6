@@ -19,8 +19,12 @@ const register = async (req, res, next) => {
       success: true,
       message: "User has been Registered successfully.",
     });
+
+    console.log("Api successfully trigerred");
     
   } catch (err) {
+    console.log("Api does not trigerred");
+    console.log(err);
     next(err);
   }
 };
