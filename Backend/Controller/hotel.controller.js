@@ -10,13 +10,14 @@ export const createHotel = async (req, res, next) => {
       }
 
       try {
-        const photos = req.files.map((file) => file.path);
-        console.log("Uploaded photos:", photos);
+        // const photos = req.files.map((file) => file.path);
+        // console.log("Uploaded photos:", photos);
         console.log("Request Body : ", req.body);
 
         const newHotel = new Hotel({
           ...req.body,
-          photos: photos,
+          photos: ""
+          // ||photos,
         });
 
         const savedHotel = await newHotel.save();
